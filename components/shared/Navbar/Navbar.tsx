@@ -20,6 +20,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import Container from "../Container";
 const { SITE_NAME } = process.env;
 
 const ListItem = React.forwardRef<
@@ -27,7 +28,7 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
-    <li className="overflow-auto">
+    <li className="overflow-auto ">
       <NavigationMenuLink className="overflow-auto" asChild>
         <a
           ref={ref}
@@ -37,7 +38,9 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="scroll-m-20 text-xl font-semibold tracking-tight ">
+            {title}
+          </div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
@@ -199,8 +202,8 @@ const Navbar = () => {
   return (
     <>
       <TopNavbar />
-      <nav className="border-b bg-white dark:bg-dark200 w-full gap-5 p-4 shadow-light-300 dark:shadow-none sm:px-12">
-        <div className="">
+      <nav className="relative border-b  bg-white dark:bg-dark200 w-full gap-5 p-4 shadow-light-300 dark:shadow-none sm:px-12">
+        <Container className="">
           <div className=" flex  justify-between items-center max-w-screen">
             {/* mobile */}
             <div className="hidden max-sm:flex  max-sm:gap-2 gap-3 ">
@@ -211,13 +214,13 @@ const Navbar = () => {
             {/* logo */}
             <Logo />
             {/* navigation with static and categories link*/}
-            <NavigationMenu className="z-[50] relative max-sm:hidden md:hidden lg:block ">
+            <NavigationMenu className="z-[50]  max-sm:hidden md:hidden lg:flex ">
               <NavigationMenuList>
                 {/* home link = */}
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
                     <NavigationMenuLink
-                      className={`${navigationMenuTriggerStyle()} capitalize text-[1.4rem]`}
+                      className={`${navigationMenuTriggerStyle()} capitalize `}
                     >
                       Home
                     </NavigationMenuLink>
@@ -227,23 +230,23 @@ const Navbar = () => {
                 {categories.map((item) => (
                   <div>
                     <NavigationMenuItem className="" key={item.name}>
-                      <NavigationMenuTrigger className="capitalize  ">
+                      <NavigationMenuTrigger className="capitalize bg-accent  ">
                         {item.name}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="absolute overflow-auto z-50">
-                        <div className="flex space-x-6 overflow-x-auto px-6 py-4 w-screen">
+                      <NavigationMenuContent className="overflow-auto z-50">
+                        <div className="flex  space-x-4 overflow-x-auto px-6 py-4 w-screen">
                           {item.subcategories.map((subcategory) => (
-                            <ul className="flex-shrink-0 flex-grow-0 w-[400px] space-y-4">
+                            <ul className="flex-shrink-0 flex-grow-0 w-[350px] space-y-4">
                               <li className="row-span-3">
                                 <NavigationMenuLink aria-hidden="true" asChild>
                                   <a
                                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                                     href="/"
                                   >
-                                    <div className="mb-2 mt-4 text-lg font-medium">
+                                    <div className="mt-4 scroll-m-20   text-3xl font-semibold tracking-tight first:mt-0">
                                       {subcategory.name}
                                     </div>
-                                    <p className="text-sm leading-tight text-muted-foreground">
+                                    <p className="leading-7 [&:not(:first-child)]:mt-6">
                                       Beautifully designed components that you
                                       can copy and paste into your apps.
                                       Accessible. Customizable. Open Source.
@@ -270,7 +273,7 @@ const Navbar = () => {
                   <NavigationMenuItem>
                     <Link href={menu.href} legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={`${navigationMenuTriggerStyle()} capitalize text-lg `}
+                        className={`${navigationMenuTriggerStyle()}  `}
                       >
                         {menu.name}
                       </NavigationMenuLink>
@@ -302,7 +305,7 @@ const Navbar = () => {
             </div> */}
             </div>
           </div>
-        </div>
+        </Container>
       </nav>
     </>
   );

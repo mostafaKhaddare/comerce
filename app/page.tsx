@@ -1,18 +1,47 @@
 import Hero from "@/components/home/Hero";
+import CarouselSection from "@/components/shared/CarouselSection";
+import Featurs from "@/components/Featurs";
+import CategoryCard from "@/components/cards/CategoryCard";
+
 export default function Home() {
+  const categories = [
+    { name: "ruban led", image: "/assets/images/rubanled.png" },
+    { name: "profile", image: "/assets/images/profile.png" },
+    { name: "controller", image: "/assets/images/controller.png" },
+    { name: "ampoule", image: "/assets/images/ampoule.png" },
+    { name: "Accessories", image: "/assets/images/rubanled.png" },
+    { name: "Accessories", image: "/assets/images/rubanled.png" },
+  ];
+  const Products = [
+    { name: "ruban led 1 ", image: "/assets/images/rubanled.png" },
+    { name: "profile 2 ", image: "/assets/images/rubanled.png" },
+    { name: "controller 3", image: "/assets/images/rubanled.png" },
+    { name: "ampoule", image: "/assets/images/rubanled.png" },
+    { name: "Accessories", image: "/assets/images/rubanled.png" },
+    { name: "Accessories", image: "/assets/images/rubanled.png" },
+  ];
   return (
     <>
       <Hero />
-      <section className="card-block-section py-8 bg-accent">
-        <div className="container mx-10 ">
-          <div className="carousel-header text-left container mb-6 w-full flex justify-between items-center ">
-            <h5 className="h2-bold text-md md:text-4xl tracking-wide text-">
-              the most famous lighting categories
-            </h5>
-            <div className="next-prev"></div>
-          </div>
-        </div>
-      </section>
+      <CarouselSection
+        title="Lighting Categories"
+        data={categories}
+        type="category"
+        className=" basis-1/3 md:basis-1/4  "
+      />
+      <CarouselSection
+        title="Luminaite Catgories"
+        data={categories}
+        type="category"
+        className=" basis-1/3 md:basis-1/4  "
+      />
+      <CarouselSection
+        title="Our Best Products"
+        data={Products}
+        type="product"
+        className=" basis-1/2  md:basis-1/3 lg:basis-1/4 "
+      />
+      <Featurs />
     </>
   );
 }

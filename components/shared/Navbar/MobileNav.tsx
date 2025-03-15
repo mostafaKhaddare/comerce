@@ -197,7 +197,7 @@ const MobileNav = () => {
             {/* mobile nav search */}
             <Search />
           </SheetHeader>
-          <Tabs defaultValue="Lighting" className="w-[400px]">
+          <Tabs defaultValue="Lighting" className="w-full">
             <TabsList className="w-full flex gap-2  py-7 px-6 ">
               {categories.map((item) => (
                 <TabsTrigger className="text-lg font-bold" value={item.name}>
