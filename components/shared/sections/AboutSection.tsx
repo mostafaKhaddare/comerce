@@ -1,78 +1,76 @@
 import React from "react";
+import { ArrowRight } from "lucide-react";
 import Section from "../layout/Section";
-import { Button } from "../../ui/button";
 import Container from "../layout/Container";
+
+interface StatProps {
+  number: string;
+  label: string;
+}
+
+function Stat({ number, label }: StatProps) {
+  return (
+    <div className="flex flex-col items-start transition-transform duration-300 hover:transform hover:translate-y-[-4px]">
+      <h4 className="text-4xl font-bold text-gray-900 bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent">
+        {number}
+      </h4>
+      <h6 className="text-gray-500 font-medium">{label}</h6>
+    </div>
+  );
+}
+
 function AboutSection() {
   return (
-    <Section>
+    <Section className="bg-gray-50">
       <Container>
-        <div className="w-full justify-start items-center gap-12 grid lg:grid-cols-2 grid-cols-1">
-          <div className="w-full justify-center items-start gap-6 grid sm:grid-cols-2 grid-cols-1 lg:order-first order-last">
-            <div className="pt-24 lg:justify-center sm:justify-end justify-start items-start gap-2.5 flex">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid sm:grid-cols-2 gap-6 lg:order-first order-last">
+            <div className="pt-24 flex justify-end">
               <img
-                className="rounded-xl object-cover"
-                src="https://pagedone.io/asset/uploads/1717741205.png"
-                alt="about Us image"
+                className="rounded-2xl object-cover w-full h-[400px] shadow-lg transition-transform duration-500 hover:transform hover:scale-105"
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+                alt="Modern office space"
+                loading="lazy"
               />
             </div>
             <img
-              className="sm:ml-0 ml-auto rounded-xl object-cover"
-              src="https://pagedone.io/asset/uploads/1717741215.png"
-              alt="about Us image"
+              className="rounded-2xl object-cover w-full h-[360px] shadow-lg transition-transform duration-500 hover:transform hover:scale-105"
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
+              alt="Team collaboration"
+              loading="lazy"
             />
           </div>
-          <div className="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
-            <div className="w-full flex-col justify-center items-start gap-8 flex">
-              <div className="w-full flex-col justify-start lg:items-start items-center gap-3 flex">
-                <h2 className="text-gray-900 text-4xl font-bold leading-normal lg:text-start text-center">
+
+          <div className="flex flex-col gap-10 lg:items-start items-center">
+            <div className="space-y-8 w-full">
+              <div className="space-y-4">
+                <h2 className="text-4xl font-bold text-gray-900 lg:text-start text-center leading-tight">
                   Empowering Each Other to Succeed
                 </h2>
-                <p className="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
+                <p className="text-gray-600 lg:text-start text-center leading-relaxed">
                   Every project we've undertaken has been a collaborative
                   effort, where every person involved has left their mark.
                   Together, we've not only constructed buildings but also built
                   enduring connections that define our success story.
                 </p>
               </div>
-              <div className="w-full lg:justify-start justify-center items-center sm:gap-10 gap-5 inline-flex">
-                <div className="flex-col justify-start items-start inline-flex">
-                  <h3 className="text-gray-900 text-4xl font-bold leading-normal">
-                    33+
-                  </h3>
-                  <h6 className="text-gray-500 text-base font-normal leading-relaxed">
-                    Years of Experience
-                  </h6>
-                </div>
-                <div className="flex-col justify-start items-start inline-flex">
-                  <h4 className="text-gray-900 text-4xl font-bold leading-normal">
-                    125+
-                  </h4>
-                  <h6 className="text-gray-500 text-base font-normal leading-relaxed">
-                    Successful Projects
-                  </h6>
-                </div>
-                <div className="flex-col justify-start items-start inline-flex">
-                  <h4 className="text-gray-900 text-4xl font-bold leading-normal">
-                    52+
-                  </h4>
-                  <h6 className="text-gray-500 text-base font-normal leading-relaxed">
-                    Happy Clients
-                  </h6>
-                </div>
+
+              <div className="flex sm:flex-row flex-col sm:gap-10 gap-6 lg:justify-start justify-center items-center">
+                <Stat number="33+" label="Years of Experience" />
+                <Stat number="125+" label="Successful Projects" />
+                <Stat number="52+" label="Happy Clients" />
               </div>
             </div>
-            <Button
-              variant="default"
-              className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex"
-            >
-              <span className="px-1.5 text-white text-sm font-medium leading-6">
-                Read More
-              </span>
-            </Button>
+
+            <button className="group inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg transition-all duration-300 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <span className="font-medium">Read More</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
       </Container>
     </Section>
   );
 }
+
 export default AboutSection;

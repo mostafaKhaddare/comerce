@@ -28,12 +28,13 @@ export default function CarouselSection({ title, data, type, className }: any) {
   };
   return (
     <Section>
-      <Container>
+      <Container className="overflow-visible">
         <Carousel
           opts={{
             align: "start",
+            dragFree: true,
           }}
-          className="w-full  "
+          className="w-full overflow-visible"
         >
           <div className="flex justify-between items-center mb-6">
             <Title className="md:mb-0 ">{title}</Title>
@@ -42,8 +43,8 @@ export default function CarouselSection({ title, data, type, className }: any) {
               <CarouselNext className="md:h-10 md:w-10" />
             </div>
           </div>
-          <div className="overflow-auto">
-            <CarouselContent className="pb-6 ">
+          <div className="overflow-visible">
+            <CarouselContent className="pb-6 overflow-visible">
               {data.map((item: any, index: number) => (
                 <CarouselItem
                   key={index}

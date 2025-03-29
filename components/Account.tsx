@@ -1,10 +1,10 @@
 import React from "react";
-import ButtonsWithBadge from "./ButtonWithBadge";
+import ButtonWithBadge from "./ButtonWithBadge";
 
 function Account() {
   return (
     <div>
-      <ButtonsWithBadge iconName="acount" hasSpane={false} />
+      <ButtonWithBadge iconName="account" showBadge={false} />
     </div>
   );
 }

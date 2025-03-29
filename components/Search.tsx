@@ -1,18 +1,36 @@
 import { Input } from "@/components/ui/input";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Search = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!mounted) return;
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
-    <Link href="/search">
-      <div className="relative ">
-        <MagnifyingGlassIcon className="h-5 w-5 absolute inset-y-0 my-auto left-2.5" />
-        <Input
-          className="pl-10  bg-slate-100/70 dark:bg-slate-800 border-none shadow-none sm:w-full md:w-fit  rounded-full"
-          placeholder="whar are you looking for"
-        />
-      </div>
-    </Link>
+    <form onSubmit={handleSubmit} className="relative w-full md:w-80">
+      <MagnifyingGlassIcon className="h-5 w-5 absolute inset-y-0 my-auto left-2.5 text-gray-500 dark:text-gray-400" />
+      <Input
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="pl-10 pr-4 bg-slate-100/70 dark:bg-slate-800/90 border-none shadow-sm hover:shadow-md transition-shadow duration-200 rounded-full focus:ring-2 focus:ring-primary/50"
+        placeholder="Search for anything..."
+        type="search"
+      />
+    </form>
   );
 };
 

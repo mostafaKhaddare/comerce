@@ -165,7 +165,7 @@ export default function ShopPage() {
               >
                 {accordionItems.map((item, index) => (
                   <AccordionItem
-                    className=" border-b border-[#e1e1e1]"
+                    className="border-b border-[#e1e1e1]"
                     key={index}
                     value={`item-${index}`}
                   >
@@ -181,7 +181,7 @@ export default function ShopPage() {
                   </AccordionItem>
                 ))}
               </Accordion>
-              <div className="mt-4">
+              <div className="mt-8">
                 <Button variant="outline" className="w-full">
                   <CircleX />
                   Clear Filters

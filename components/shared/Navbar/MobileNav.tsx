@@ -3,9 +3,9 @@ import {
   SheetClose,
   SheetContent,
   SheetTrigger,
-  SheetFooter,
   SheetTitle,
   SheetHeader,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,10 +15,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { LucideIcon, Menu } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import ButtonsWithBadge from "../../ButtonWithBadge";
+import ButtonWithBadge from "@/components/ButtonWithBadge";
 import Search from "../../Search";
 import { cn } from "@/lib/utils";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
@@ -34,9 +34,18 @@ import {
   Pizza,
   Plane,
   Sandwich,
-  Smile,
+  MapPin,
+  Phone,
 } from "lucide-react";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+
+import { Card, CardTitle, CardContent } from "@/components/ui/card";
+
 const staticMenu = [
   { name: "about us", href: "/about" },
   { name: "contact us", href: "/contact" },
@@ -45,6 +54,18 @@ const staticMenu = [
 const categories = [
   {
     name: "Lighting",
+    images: [
+      {
+        id: 1,
+        src: "/assets/images/transformateur-categorie-1.jpg",
+        title: "look at range of lightinf goods",
+      },
+      {
+        id: 2,
+        src: "/assets/images/projecteur_categ.jpg ",
+        title: "lighting solution our power consept",
+      },
+    ],
     subcategories: [
       {
         name: "Ruban LED",
@@ -84,6 +105,18 @@ const categories = [
   },
   {
     name: "Industrial",
+    images: [
+      {
+        id: 1,
+        src: "/assets/images/rubanled.png",
+        title: "our best lumnaire shapes",
+      },
+      {
+        id: 2,
+        src: "/assets/images/spot_categori.jpg",
+        title: "our best lumnaire shapes",
+      },
+    ],
     subcategories: [
       {
         name: "High Bay",
@@ -147,6 +180,18 @@ const categories = [
 
   {
     name: "luminaire",
+    images: [
+      {
+        id: 1,
+        src: "/assets/images/profile.png",
+        title: "our best lumnaire shapes",
+      },
+      {
+        id: 2,
+        src: "/assets/images/projecteur_categ.jpg",
+        title: "our best lumnaire shapes",
+      },
+    ],
     subcategories: [
       {
         name: "lineerer",
@@ -167,87 +212,188 @@ const categories = [
     ],
   },
 ];
-const subcategories = categories.flatMap((category) => category.subcategories);
+
+const socialLinks = [
+  { name: "Instagram", icon: "instagram" as const, href: "/" },
+  { name: "Facebook", icon: "facebook" as const, href: "/" },
+  { name: "YouTube", icon: "youtube" as const, href: "/" },
+  { name: "Account", icon: "account" as const, href: "/" },
+];
 
 const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <div>
-          <ButtonsWithBadge iconName="menu" hasSpane={false} />
+          <ButtonWithBadge iconName="menu" showBadge={false} />
         </div>
       </SheetTrigger>
-      <SheetContent
-        side="left"
-        className="flex flex-col gap-7 w-full overflow-auto"
-      >
-        <div className="bg-white flex flex-col gap-8">
-          <SheetHeader className="flex-col gap-4">
+      <SheetContent side="left" className="flex flex-col w-full overflow-auto">
+        <div className="bg-white flex flex-col gap-6">
+          <SheetHeader className="flex-col gap-5">
             <div className="flex justify-between items-center">
-              <Link href="/" className="flex items-center gap-3  ">
+              <Link href="/" className="flex items-center">
                 <Logo />
               </Link>
               <SheetClose>
-                <ButtonsWithBadge iconName="close" hasSpane={false} />
+                <ButtonWithBadge iconName="close" showBadge={false} />
               </SheetClose>
             </div>
-            <SheetTitle className="text-2xl font-bold text-left">
+            <SheetTitle className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
               Shop
             </SheetTitle>
             {/* mobile nav search */}
             <Search />
           </SheetHeader>
-          <Tabs defaultValue="Lighting" className="w-full">
-            <TabsList className="w-full flex gap-2  py-7 px-6 ">
+
+          <Tabs defaultValue={categories[0].name} className="w-full">
+            <TabsList className="w-full flex justify-evenly items-center py-8">
               {categories.map((item) => (
-                <TabsTrigger className="text-lg font-bold" value={item.name}>
+                <TabsTrigger
+                  key={item.name}
+                  className="text-base font-medium leading-7 tracking-wide px-4 py-2 transition-all hover:text-primary"
+                  value={item.name}
+                >
                   {item.name}
                 </TabsTrigger>
               ))}
             </TabsList>
             {categories.map((item) => (
               <TabsContent
+                key={item.name}
                 value={item.name}
-                className="h3-bold overflow-hidden "
+                className="overflow-hidden"
               >
+                <Carousel
+                  opts={{
+                    align: "start",
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent>
+                    {item.images.map((i) => (
+                      <CarouselItem key={i.id}>
+                        <Card className="w-full relative aspect-video text-center pt-4 overflow-hidden">
+                          <CardContent>
+                            <Image
+                              src={i.src}
+                              alt={i.title}
+                              fill
+                              className="object-cover transition-all hover:opacity-90 duration-500 hover:scale-110"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-black/20"></div>
+                            <CardTitle className="text-xl tracking-tight font-bold absolute left-4 text-white bottom-2">
+                              {i.title}
+                            </CardTitle>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+
                 <Accordion
                   type="single"
                   collapsible
-                  className="max-w-lg my-4 w-full "
+                  className="max-w-lg w-full mt-4"
                 >
                   {item.subcategories.map((it, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                      <AccordionTrigger className="py-6 list-none">
-                        <div className="flex justify-between items-center gap-3">
+                    <AccordionItem
+                      key={index}
+                      value={`item-${index}`}
+                      className="border-b"
+                    >
+                      <AccordionTrigger className="py-4 list-none hover:no-underline">
+                        <div className="flex justify-between items-center gap-4 group">
                           <Image
-                            className="rounded-md "
+                            className="rounded-md aspect-square group-hover:scale-105 transition-transform duration-300"
                             src="/hero2.jpg"
-                            width={50}
-                            height={70}
+                            width={40}
+                            height={40}
                             alt="category img"
                             quality={100}
                           />
-                          {it.name}
+                          <h2 className="scroll-m-20 text-lg font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
+                            {it.name}
+                          </h2>
                         </div>
                       </AccordionTrigger>
-                      {it.items.map((i, index) => (
-                        <AccordionContent className="max-w-lg w-full text-light400_light500 base-medium pb-0 group cursor-pointer my-2 ">
-                          <Link href="/" className=" group-hover:text-black">
-                            {i.name}
-                          </Link>
-                          {index < it.items.length - 1 && (
-                            <Separator className="my-4" />
-                          )}
-                        </AccordionContent>
-                      ))}
+                      <AccordionContent className="pt-2 pb-4">
+                        <div className="flex flex-col space-y-3">
+                          {it.items.map((i, index) => (
+                            <div
+                              key={index}
+                              className="relative overflow-hidden"
+                            >
+                              <Link
+                                href="/"
+                                className="group flex items-center gap-3 py-3 px-4 text-sm leading-7 rounded-md relative transition-all duration-300 ease-in-out hover:pl-6"
+                              >
+                                {"icon" in i && i.icon && (
+                                  <i.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                                )}
+                                <span className="group-hover:text-primary transition-colors duration-300">
+                                  {i.name}
+                                </span>
+                                <span className="absolute left-0 w-1 h-full bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                                <span className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              </Link>
+                              {index < it.items.length - 1 && (
+                                <Separator className="my-1" />
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </TabsContent>
             ))}
           </Tabs>
-          <SheetFooter>footer</SheetFooter>
         </div>
+
+        <SheetFooter className="flex flex-col gap-6 mt-auto border-t pt-6">
+          <div className="grid grid-cols-2 gap-4">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors duration-200 bg-accent/10 rounded-lg p-3"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Find our Store</span>
+            </Link>
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors duration-200 bg-accent/10 rounded-lg p-3"
+            >
+              <Phone className="w-4 h-4" />
+              <span>Contact Us</span>
+            </Link>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Follow us on social media
+            </p>
+            <div className="flex justify-start items-center gap-4">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  className="hover:text-primary transition-colors duration-200 bg-accent/10 p-2 rounded-full"
+                >
+                  <ButtonWithBadge
+                    className="w-5 h-5"
+                    showBadge={false}
+                    iconName={social.icon}
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
@@ -256,7 +402,7 @@ const MobileNav = () => {
 export default MobileNav;
 
 const ListItem = React.forwardRef<
-  React.ElementRef<typeof Link>,
+  React.ComponentRef<typeof Link>,
   React.ComponentPropsWithoutRef<typeof Link> & { icon: LucideIcon }
 >(({ className, title, children, ...props }, ref) => {
   return (
@@ -270,8 +416,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <props.icon className="mb-4 h-6 w-6" />
-          <div className="text-sm font-semibold leading-none">{title}</div>{" "}
+          <props.icon className="mb-4 h-8 w-8" />
+          <div className="text-sm font-semibold leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
