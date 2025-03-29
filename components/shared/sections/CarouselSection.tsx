@@ -1,9 +1,9 @@
 "use client";
-import Section from "./Section";
-import Title from "./Title";
-import Container from "./Container";
-import CategoryCard from "../cards/CategoryCard";
-import ProductCard from "../cards/ProductCard";
+import Section from "../layout/Section";
+import Title from "../layout/Title";
+import Container from "../layout/Container";
+import CategoryCard from "@/components/cards/CategoryCard";
+import ProductCard from "@/components/cards/ProductCard";
 
 import {
   Carousel,
@@ -11,7 +11,7 @@ import {
   CarouselPrevious,
   CarouselNext,
   CarouselItem,
-} from "../ui/carousel";
+} from "@/components/ui/carousel";
 
 export default function CarouselSection({ title, data, type, className }: any) {
   // Determine the correct card to render
@@ -37,28 +37,25 @@ export default function CarouselSection({ title, data, type, className }: any) {
         >
           <div className="flex justify-between items-center mb-6">
             <Title className="md:mb-0 ">{title}</Title>
-            <div className="hidden md:flex justify-center items-center absolute   right-8">
+            <div className="hidden md:flex justify-center items-center absolute right-8">
               <CarouselPrevious className="right-8 md:h-10 md:w-10" />
-              <CarouselNext className="    md:h-10 md:w-10" />
+              <CarouselNext className="md:h-10 md:w-10" />
             </div>
           </div>
-          <CarouselContent className="overflow-auto scrollbar-custom ">
-            {data.map((item: any, index: number) => (
-              <CarouselItem key={index} className={`pr-0 md:pr-4 ${className}`}>
-                {renderCard(item)}
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+          <div className="overflow-auto">
+            <CarouselContent className="pb-6 ">
+              {data.map((item: any, index: number) => (
+                <CarouselItem
+                  key={index}
+                  className={`pr-0 md:pr-4 ${className}`}
+                >
+                  {renderCard(item)}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </div>
         </Carousel>
       </Container>
     </Section>
   );
-}
-
-{
-  /* {categories.map((category, index) => (
-              <CarouselItem key={index} className=" basis-1/3 md:basis-1/4 ">
-                <CategoryCard key={index} params={category} />
-              </CarouselItem>
-            ))} */
 }

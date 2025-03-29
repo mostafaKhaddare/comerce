@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Check, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "../ui/button";
@@ -23,44 +23,51 @@ type ProductProps = {
 export default function ProductCard({ params, key }: ProductProps) {
   const { image, name } = params;
   return (
-    <Link href="/">
-      <Card className="rounded-xl aspect-auto shadow-md p-4 pb-2 md:pb-4">
-        <CardContent className="flex flex-col items-center pb-0 ">
-          <div className="w-40 h-40 lg:w-[19rem] lg:h-80  relative ">
+    <Link className="" href="/">
+      <Card className="rounded-xl shadow-md overflow-hidden">
+        <CardContent className="p-0">
+          {/* This div will always take full height */}
+          <div className="relative w-full aspect-square">
             <Image
-              src={image} // Replace with your actual image path
-              alt="Gaming Controller"
+              src={image}
+              alt="Ruban LED"
               layout="fill"
-              objectFit="contain"
-              className="w-full  rounded-md"
+              objectFit="cover" // Fills the entire div
+              className="absolute inset-0 w-full h-full" // Ensures full coverage
             />
+            {/* Favorite icon */}
             <Link
               href="/"
-              className="absolute top-2 right-2 md:top-6 md:right-3 bg-accent rounded-full p-2"
+              className="absolute top-3 right-3 bg-accent rounded-full p-2 shadow-md hover:scale-110 transition-transform"
             >
-              <Heart size={20} strokeWidth={2} />
+              <Heart size={15} strokeWidth={2} />
             </Link>
           </div>
         </CardContent>
-        <CardHeader className=" text-center py-4 px-0 md:pl-0">
-          <CardTitle className="scroll-m-20  text-sm md:text-xl font-semibold tracking-tight">
+
+        <CardHeader className="text-center p-2 md:p-4">
+          <CardTitle className="text-base  md:text-xl font-semibold tracking-tight">
             Ruban 2835/120 IP20
           </CardTitle>
-          <CardDescription>Ruban Led , Unicolor</CardDescription>
+          <CardDescription className="text-sm sm:text-base">
+            Ruban LED, Unicolor
+          </CardDescription>
         </CardHeader>
-        <Separator className=" mb-2 md:mb-4" />
-        <CardFooter className="flex  justify-between items-center gap-1 md:gap-3 p-0">
+
+        <Separator />
+
+        <CardFooter className="flex justify-between items-center gap-2 p-4">
           <Button
-            size="icon"
-            className="w-fit max-sm:flex-1 md:w-full bg-accent-blue tansition-all duration-300 hover:bg-accent-bleu"
+            size="sm"
+            className="w-full bg-accent-blue transition-all duration-300 hover:bg-blue-400"
           >
-            commander
+            Commander
           </Button>
           <Button
-            size="icon"
-            className="w-fit max-sm:hidden md:w-full bg-accent-blue transition-all duration-300 hover:bg-blue-400"
+            size="sm"
+            className="w-full bg-accent-blue transition-all duration-300 hover:bg-blue-400 hidden sm:flex"
           >
-            discover
+            Discover
           </Button>
         </CardFooter>
       </Card>

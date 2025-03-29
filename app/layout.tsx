@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 import Navbar from "@/components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
+import Newsletter from "@/components/shared/NewsLetter";
+import Section from "@/components/shared/layout/Section";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +29,9 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Section className="w-full bg-muted/50 py-12 px-6 md:px-12">
+            <Newsletter />
+          </Section>
           <Footer />
         </ThemeProvider>
       </body>

@@ -1,7 +1,8 @@
 import Hero from "@/components/home/Hero";
-import CarouselSection from "@/components/shared/CarouselSection";
-import Featurs from "@/components/Featurs";
-import CategoryCard from "@/components/cards/CategoryCard";
+import CarouselSection from "@/components/shared/sections/CarouselSection";
+import AboutSection from "@/components/shared/sections/AboutSection";
+import FeatursSection from "@/components/shared/sections/FeatursSection";
+import PartnersSection from "@/components/shared/sections/PartnersSection";
 
 export default function Home() {
   const categories = [
@@ -27,21 +28,23 @@ export default function Home() {
         title="Lighting Categories"
         data={categories}
         type="category"
-        className=" basis-1/3 md:basis-1/4  "
+        className=" basis-1/3 md:basis-1/5"
       />
+      <AboutSection />
       <CarouselSection
         title="Luminaite Catgories"
         data={categories}
         type="category"
-        className=" basis-1/3 md:basis-1/4  "
+        className=" basis-1/3 md:basis-1/5"
       />
+      <FeatursSection />
       <CarouselSection
         title="Our Best Products"
         data={Products}
         type="product"
-        className=" basis-1/2  md:basis-1/3 lg:basis-1/4 "
+        className="basis-1/2  md:basis-1/4 lg:basis-1/5"
       />
-      <Featurs />
+      <PartnersSection />
     </>
   );
 }

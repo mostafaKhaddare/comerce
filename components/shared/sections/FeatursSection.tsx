@@ -1,6 +1,6 @@
 import React from "react";
-import Section from "./shared/Section";
-import Container from "./shared/Container";
+import Section from "../layout/Section";
+import Container from "../layout/Container";
 
 function Featurs() {
   return (

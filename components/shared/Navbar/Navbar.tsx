@@ -20,8 +20,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Container from "../Container";
-const { SITE_NAME } = process.env;
+import Container from "../layout/Container";
 
 const ListItem = React.forwardRef<
   React.ComponentRef<"a">,
@@ -33,12 +32,12 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "overflow-auto   block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "overflow-auto  block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
-          <div className="scroll-m-20 text-xl font-semibold tracking-tight ">
+          <div className="scroll-m-20 text-base font-semibold tracking-tight ">
             {title}
           </div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -203,13 +202,12 @@ const Navbar = () => {
     <>
       <TopNavbar />
       <nav className="relative border-b  bg-white dark:bg-dark200 w-full gap-5 p-4 shadow-light-300 dark:shadow-none sm:px-12">
-        <Container className="">
-          <div className=" flex  justify-between items-center max-w-screen">
+        <Container>
+          <div className="flex justify-between items-center max-w-screen">
             {/* mobile */}
             <div className="hidden max-sm:flex  max-sm:gap-2 gap-3 ">
               <MobileNav />
               <MobileSearch />
-              {/* Logo Section */}
             </div>
             {/* logo */}
             <Logo />
@@ -229,34 +227,45 @@ const Navbar = () => {
                 {/* categories links */}
                 {categories.map((item) => (
                   <div>
-                    <NavigationMenuItem className="" key={item.name}>
-                      <NavigationMenuTrigger className="capitalize bg-accent  ">
+                    <NavigationMenuItem key={item.name}>
+                      <NavigationMenuTrigger className="capitalize bg-accent">
                         {item.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="overflow-auto z-50">
-                        <div className="flex  space-x-4 overflow-x-auto px-6 py-4 w-screen">
-                          {item.subcategories.map((subcategory) => (
-                            <ul className="flex-shrink-0 flex-grow-0 w-[350px] space-y-4">
+                        {/* Horizontal scrolling container */}
+                        <div className="flex space-x-6 overflow-x-auto px-6 py-4 w-screen  scrollbar-hide">
+                          {item.subcategories.map((subcategory, index) => (
+                            <ul
+                              key={index}
+                              className="flex-shrink-0 w-[350px] space-y-4"
+                            >
+                              {/* Subcategory Title */}
                               <li className="row-span-3">
-                                <NavigationMenuLink aria-hidden="true" asChild>
-                                  <a
-                                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    className="flex flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md"
                                     href="/"
                                   >
-                                    <div className="mt-4 scroll-m-20   text-3xl font-semibold tracking-tight first:mt-0">
+                                    <div className="mt-4 text-xl font-semibold tracking-tight">
                                       {subcategory.name}
                                     </div>
-                                    <p className="leading-7 [&:not(:first-child)]:mt-6">
+                                    <p className="leading-6 mt-2 text-sm text-muted-foreground">
                                       Beautifully designed components that you
                                       can copy and paste into your apps.
                                       Accessible. Customizable. Open Source.
                                     </p>
-                                  </a>
+                                  </Link>
                                 </NavigationMenuLink>
                               </li>
-                              <div className="max-h-[17rem] overflow-y-auto space-y-2 ">
-                                {subcategory.items.map((list) => (
-                                  <ListItem href="/" title={list.name}>
+
+                              {/* Items inside the subcategory */}
+                              <div className="max-h-[17rem] overflow-y-auto space-y-2">
+                                {subcategory.items.map((list, index) => (
+                                  <ListItem
+                                    key={index}
+                                    href="/"
+                                    title={list.name}
+                                  >
                                     Re-usable components built using Radix UI
                                     and Tailwind CSS.
                                   </ListItem>
@@ -297,7 +306,6 @@ const Navbar = () => {
               {/* account */}
               <Account />
               {/* cart */}
-
               <Cart />
               {/* mode toggle */}
               {/* <div className="max-sm:hidden">

@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Camera } from "lucide-react";
-import Container from "../Container";
+import Container from "../layout/Container";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 const footerSections = [

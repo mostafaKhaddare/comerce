@@ -1,15 +1,10 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, CirclePlay } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import React from "react";
-import Container from "../shared/Container";
-import {
-  Card,
-  CardContent,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import Container from "../shared/layout/Container";
+import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -28,10 +23,10 @@ const Hero = () => {
           <Badge className="bg-gradient-to-br via-70% from-primary via-muted/30 to-primary rounded-full py-1 border-none">
             Just released v1.0.0
           </Badge>
-          <h1 className="mt-6 max-w-[17ch] text-4xl md:text-7xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">
+          <h1 className="mt-6 max-w-[17ch] h1-bold ">
             Customized Shadcn UI Blocks & Components
           </h1>
-          <p className="mt-6 max-w-[60ch] text-lg">
+          <p className="mt-6 max-w-[60ch] paragraph">
             Explore a collection of Shadcn UI blocks and components, ready to
             preview and copy. Streamline your development workflow with
             easy-to-implement examples.
@@ -59,7 +54,7 @@ const Hero = () => {
               delay: 2000,
             }),
           ]}
-          className="w-full "
+          className="w-full overflow-hidden "
         >
           <CarouselContent>
             <CarouselItem>
@@ -114,8 +109,8 @@ const Hero = () => {
               </div>
             </CarouselItem>
           </CarouselContent>
-          <CarouselNext className="absolute bottom-1/2 right-[-11px] translate-y-1/2" />
-          <CarouselPrevious className="absolute bottom-1/2 left-[-11px] translate-y-1/2" />
+          <CarouselNext className="absolute bottom-1/2 right-[-14px] translate-y-1/2 z-10" />
+          <CarouselPrevious className="absolute bottom-1/2 left-[-14px] translate-y-1/2 z-10" />
         </Carousel>
       </Container>
     </div>

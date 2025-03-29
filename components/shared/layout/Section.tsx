@@ -7,7 +7,7 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ children, className }) => {
   return (
-    <section className={`py-12 lg:py-32 relative ${className}`}>
+    <section className={`py-10 lg:py-20 relative ${className}`}>
       {children}
     </section>
   );

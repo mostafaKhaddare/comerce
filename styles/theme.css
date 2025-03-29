@@ -100,7 +100,7 @@
   }
 
   .h1-bold {
-    @apply text-[30px] font-bold leading-[42px] tracking-tighter;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-normal lg:text-5xl;
   }
 
   .h2-bold {
@@ -131,8 +131,8 @@
     @apply text-[18px] font-bold leading-[140%];
   }
 
-  .paragraph-regular {
-    @apply text-[16px] font-normal leading-[22.4px];
+  .paragraph {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
   }
 
   .paragraph-medium {
